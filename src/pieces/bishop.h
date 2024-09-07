@@ -1,0 +1,4 @@
+#ifndef CHESS_ENGINE_V1_BISHOP_H
+#define CHESS_ENGINE_V1_BISHOP_H
+
+#endif

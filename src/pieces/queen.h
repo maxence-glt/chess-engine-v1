@@ -1,0 +1,4 @@
+#ifndef CHESS_ENGINE_V1_QUEEN_H
+#define CHESS_ENGINE_V1_QUEEN_H
+
+#endif
