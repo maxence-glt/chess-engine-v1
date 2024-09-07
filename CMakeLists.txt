@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.26.1)
+project(chess_engine_v1)
 
 Message("")
 Message( STATUS "CMAKE_BINARY_DIR: " ${CMAKE_BINARY_DIR} )
@@ -9,11 +10,10 @@ Message( STATUS "CMAKE_C_COMPILER: " ${CMAKE_C_COMPILER} )
 Message( STATUS "CMAKE_PROJECT_NAME: " ${CMAKE_PROJECT_NAME} )
 Message( STATUS "CMAKE_FINDCMAKE: " ${CMAKE_SOURCE_DIR}/CMAKE )
 
-project(chess_engine_v1)
-
 # ------- Set Vars ------- #
 
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_C_STANDARD 17)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/CMAKE")
@@ -39,6 +39,33 @@ Message( STATUS "SOURCE entry point : " ${SOURCE_FILES} )
 Message("")
 
 # ------- End Set Vars --- #
+
+# ------- Tests --- #
+
+include(FetchContent)
+FetchContent_Declare(
+        googletest
+        URL https://github.com/google/googletest/archive/03597a01ee50ed33e9dfd640b249b4be3799d395.zip
+)
+# For Windows: Prevent overriding the parent project's compiler/linker settings
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+FetchContent_MakeAvailable(googletest)
+
+enable_testing()
+
+add_executable(
+        bitboard_test
+        tests/bitboard_test.cpp
+)
+target_link_libraries(
+        bitboard_test
+        GTest::gtest_main
+)
+
+include(GoogleTest)
+gtest_discover_tests(bitboard_test)
+
+# ------- End Tests ----- #
 
 # ------- Executable ----- #
 
@@ -96,7 +123,7 @@ file(COPY assets DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
 
 # ------- Inc & Link ---- #
 INCLUDE_DIRECTORIES(${SDL2_INCLUDE_DIR} ${SDL2TTF_INCLUDE_DIR} ${SDL2_IMAGE_INCLUDE_DIR} ${SDL2Mixer_INCLUDE_DIR})
-TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${SDL2_LIBRARY} ${SDL2TTF_LIBRARY} ${SDL2_IMAGE_LIBRARY} ${SDL2Mixer_LIBRARY} )
+TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${SDL2_LIBRARY} ${SDL2TTF_LIBRARY} ${SDL2_IMAGE_LIBRARY} ${SDL2Mixer_LIBRARY})
 
 # ------- End ----------- #
 
