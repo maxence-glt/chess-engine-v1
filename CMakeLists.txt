@@ -17,13 +17,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_C_STANDARD 17)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/CMAKE")
-set(SOURCE_FILES src/main.cpp
+set(SOURCE_FILES
+        src/main.cpp
         src/SDLWindow.cpp
         src/SDLWindow.h
         src/bitboard.cpp
         src/bitboard.h
         src/types.h
-        tests/bitboard_test.cpp
         src/pieces/pawn.h
         src/pieces/king.h
         src/pieces/knight.h
