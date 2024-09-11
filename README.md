@@ -18,3 +18,6 @@ GTest
 Cmake
 
 SDL
+
+### Commenting
+I tend to comment how functions work in .cpp files, and how they are used in .h files.
