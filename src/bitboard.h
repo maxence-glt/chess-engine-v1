@@ -20,6 +20,8 @@ constexpr Bitboard MaskRank[8]  = {eightDigit, eightDigit << 8, eightDigit << 16
 constexpr Bitboard ClearFile[8] = {0xFEFEFEFEFEFEFEFE, 0xFDFDFDFDFDFDFDFD, 0xFBFBFBFBFBFBFBFB, 0xF7F7F7F7F7F7F7F7, 0xEFEFEFEFEFEFEFEF, 0xDFDFDFDFDFDFDFDF, 0xBFBFBFBFBFBFBFBF, 0x7F7F7F7F7F7F7F7F};
 constexpr Bitboard MaskFile[8]  = {0x101010101010101, 0x202020202020202, 0x404040404040404, 0x808080808080808, 0x1010101010101010, 0x2020202020202020, 0x4040404040404040, 0x8080808080808080};
 
+// Chess board data
+
 struct ChessBoard {
     Bitboard rooks;
     Bitboard pawns;
@@ -66,9 +68,19 @@ enum boardPos {
     A8, B8, C8, D8, E8, F8, G8, H8
 };
 
+// Functions
+
+// Resets all ChessBoard elements to their default position
 void initPieceBoards(ChessBoard&);
-void printChessBoard(const ChessBoard&);
-void printBitboard(Bitboard);
+
+// Prints the current state of the chess board, represented as a bitboard.
+// 'w' represents white pieces, 'b' represents black pieces, and '_' represents empty squares.
+void printFormattedBitboard(const ChessBoard&);
+
+// Prints ChessBoard's binary string
+void printBinaryBitboard(Bitboard);
+
+//
 U64 genShift(U64, int);
 Bitboard lookupTable(boardPos);
 
